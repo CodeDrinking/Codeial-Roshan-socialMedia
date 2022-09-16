@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const port= 8000;
 
+const expressLayouts= require('express-ejs-layouts');
+app.use(expressLayouts);
+
+//extrats style and scripts from sub pages into the layout
+app.set('layout extractStyles' ,true)
+app.set('layout extractScripts' ,true)
+//set up of sttaic files
+app.use(express.static('./assets'))
 
 //use express router
 app.use('/', require('./routes'))  // this for req for all routes , go to index.js of route 
