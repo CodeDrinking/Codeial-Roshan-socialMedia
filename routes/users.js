@@ -8,8 +8,9 @@ console.log("user profile")
 
 router.get('/profile' , usersController.profile); // this fot if any request like /users/profile..this will render usercntrler home
 
+router.get('/sign-up',usersController.signUp);
+router.get('/sign-in',usersController.signIn);
 
-
-
+router.post('/create' , usersController.create)
 
 module.exports= router;
