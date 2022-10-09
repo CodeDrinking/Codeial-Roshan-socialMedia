@@ -10,7 +10,16 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-statergy');
 const MongoStore = require('connect-mongo')(session);
+// const sassMiddleware = require('node-sass-middleware')
 
+// app.use(sassMiddleware({
+//     src: './assets/css'
+//     , dest: './assets/css'
+//     , debug: true
+//     , outputStyle: 'extended'
+//     , prefix:  '/css'  
+
+// }));
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -51,6 +60,7 @@ app.use(session ({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(passport.setAuthenticatedUser);
 
 //use express router
