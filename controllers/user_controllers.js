@@ -1,17 +1,33 @@
-// module.exports.profile= function(req, res){
-//     return res.end('<h1>this is my profile </h1>')
-// }
 
 const User = require('../models/user')
 
-module.exports.profile= function(req, res){
-    return res.render('users' ,{
-        title: "usersHome"
+module.exports.profile = function(req, res){
+    return res.render('users', {
+        title: 'User Profile'
     })
 }
+// module.exports.profile= function(req, res){
+//     if(req.cookies.user_id){
+//         User.findById(req.cookies.user_id ,function(err , user){
+//             console.log(user)
+//             if(user){
+//                 return res.render('users' ,{
+//                     title: "users Page",
+//                     user :user
+//                 })
+//             }
+//             return res.redirect('/users/sign-in')
+//         })        
+//     }else{
+//         return res.redirect('/users/sign-in')
+//     }
+// }
 
 //render the sign up page
 module.exports.signUp= function(req, res){
+    if(req.isAuthenticated()){
+        return res.redirect ('/users/profile')
+    }
     return res.render('user_sign_up' ,{
         title: "codeial | Sign Up"
     })
@@ -19,6 +35,9 @@ module.exports.signUp= function(req, res){
 
 //render the sign in page
 module.exports.signIn= function(req , res){
+    if(req.isAuthenticated()){
+        return res.redirect ('/users/profile')
+    }
     return res.render('user_sign_in',{
         title :'codeial | sign In'
     })
@@ -48,7 +67,48 @@ module.exports.create= function(req , res){
 }
 
 module.exports.createSession= function(req , res){
-    // todo later
 
+
+    //manual authentication
+
+    //steps to authenticate
+
+    // find the user
+//     User.findOne({email :req.body.email}, function(err , user){f
+//         if(err){
+//             console.log("error in findinf user in sigining in"); return}
+//           //handle if user is found
+//     if(user){
+//     //handle missmatching password
+//         if(user.password != req.body.password ){
+//             return res.redirect('back')
+//         }
+//         //handle session creation
+//         res.cookie('user_id', user.id);
+//         return res.redirect('/users/profile');
+//     }
+//     else{
+//           //if user is not found and send user to signn page
+//            return res.redirect('back')
+ 
+//     }
+//    });
+// }
+
+return res.redirect('/');
+}
+
+// module.exports.destroySession = function(req , res ){
+//     req.logout(); // logout() is default func given by passport.js
+//     return  res.redirect('/')
+// }
+module.exports.destroySession = function(req, res){
+// logout() is default func given by passport.js
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        res.redirect('/');
+      });
 }
 

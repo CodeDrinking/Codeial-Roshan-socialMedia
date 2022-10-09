@@ -13,12 +13,19 @@
   "author": "roshan mestri",
   "license": "ISC",
   "dependencies": {
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
     "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "har-validator": "^5.1.5",
     "mongoose": "^6.6.1",
-    "mongoose-timestamp": "^0.6.0"
+    "mongoose-timestamp": "^0.6.0",
+    "npm": "^8.19.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.3"
