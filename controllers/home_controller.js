@@ -1,13 +1,26 @@
 // module.exports.home= function(req, res){
 //     return res.end('<h1>express is up for codeial </h1>')
 // }
-
+const Post = require('../models/post')
 module.exports.home= function(req, res){
-    console.log(req.cookies);
-    res.cookie('user_id' , 65)
-    return res.render('home',{
-        title: "Home"
-    });
+    // console.log(req.cookies);
+    // res.cookie('user_id' , 65)
+    
+    //for normal
+//     Post.find({}, function(err , posts){
+//     return res.render('home',{
+//         title: "Codeial || Home ",
+//         posts : posts
+//     });
+// });
+
+//popilating user which user posted that post
+     Post.find({}).populate('user').exec(function(err , posts){
+        return res.render('home',{
+            title: "Codeial || Home ",
+            posts : posts
+        });
+     })
 }
 
 // module.exports.girl= function(req, res){
