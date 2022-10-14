@@ -1,14 +1,14 @@
 <li>     
-    <p class="user-comment">
+    <p class="user-post">
         <% if(locals.user && locals.user.id == post.user.id ) {%>
         <small>
             <a href="/posts/destroy/<%= post.id %>">Delete Post</a>
         </small>
         <%}%>
 
-        <%= post.content%>
+        <%= post.user.name%>
         <small class="comment-content">
-            <%= post.user.name%>
+            <%= post.content%>
         </small>
     </p>
     <div class="post-comment" >

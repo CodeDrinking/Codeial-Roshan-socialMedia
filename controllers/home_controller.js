@@ -5,20 +5,12 @@ const User = require('../models/user')
 // }
 
 
-module.exports.home= function(req, res){
-    // console.log(req.cookies);
-    // res.cookie('user_id' , 65)
-    
-    //for normal
-//     Post.find({}, function(err , posts){
-//     return res.render('home',{
-//         title: "Codeial || Home ",
-//         posts : posts
-//     });
-// });
-
+module.exports.home=  async function(req, res){
 //popilating user which user posted that post
-     Post.find({})
+
+    try{
+            
+     let posts = await Post.find({})
      .populate('user')
      .populate({
         path : 'comments', //multiple popolate we can do
@@ -26,16 +18,26 @@ module.exports.home= function(req, res){
             path : 'user'
         }
      })
-         .exec(function(err , posts){
-            User.find({} , function(err , users){
-                return res.render('home',{
-                    title: "Codeial | Home ",
-                    posts : posts,
-                    all_users : users
-            });
-        })
-    })
-}
+        let users= await User.find({});
+        return res.render('home',{
+            title: "Codeial | Home ",
+            posts : posts,
+            all_users : users
+        });
+    }
+
+    
+    catch (err){
+        console.log('Error' , err);
+        return;
+
+    }
+
+
+    }
+                
+        
+
      
 
 
@@ -43,3 +45,14 @@ module.exports.home= function(req, res){
 // module.exports.girl= function(req, res){
 //     return res.end('<h1>that girl is insanely intelligent !!!!!! </h1>')
 // }
+
+
+//using then / promise like functionality
+// Post.find({}) .populate('comments').then ());
+
+
+// let posts =  Post.find({}) .populate('comments').exec();
+// posts.then();
+
+
+
