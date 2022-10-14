@@ -10,6 +10,7 @@ console.log("relax boy!! you got this..")
 router.get('/' , homeController.home); // this for rendering home page and this will go to home contrller
 router.use('/users' , require('./users')) // this is for if users comes up after localhost/ , now this will go in users.js
 router.use('/posts' ,require('./posts'))
+router.use('/comments' ,require('./comments'))
 
 // for any further routes ,access from here
 //eg:  router.use('/routerName' , require('./routerFile'))

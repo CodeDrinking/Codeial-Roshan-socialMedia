@@ -1,0 +1,23 @@
+<li>
+<article class="row">
+    <div class="col-md-3 col-xs-4">
+      <div class="panel panel-default arrow left">
+        <div class="panel-body">
+          <header class="text-left">
+            <div class="comment-user"><i class="fa fa-user"></i> <%= comment.user.name %></div>
+            <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <%= comment.user.updatedAt%></time>
+          </header>
+          <div class="comment-post">
+            <p>
+                <%= comment.content %>
+                <% if(locals.user && locals.user.id == comment.user.id ) {%>
+                <small>
+                    <a href="/comments/destroy/<%= comment.id %>">Delete Comment</a>
+                </small>
+                <% } %>
+            </p>
+        </div>
+        </div>
+    </div>
+  </article>
+</li>

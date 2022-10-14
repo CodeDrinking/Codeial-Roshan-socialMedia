@@ -1,0 +1,16 @@
+/* body #user-img{
+    display: inline;
+  } */
+  body .submit{
+    background-color: green;
+    color: white;
+  }
+  body .user-comment{
+    border-style: outset;
+    color: black;
+    font-weight: bold;
+  }
+  body .comment-content{
+    display: block;
+    border-style: ridge;
+  }
