@@ -9,6 +9,8 @@ const db= require('./config/mongoose')
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-statergy');
+const passportJWT = require('./config/passport-jwt-strategy');
+const passportGoogle = require('./config/passport-google-oauth2-Stategy')
 const MongoStore = require('connect-mongo')(session);
 // const sassMiddleware = require('node-sass-middleware')
 const flash = require('connect-flash');
@@ -34,6 +36,10 @@ app.set('layout extractStyles' ,true)
 app.set('layout extractScripts' ,true)
 //set up of sttaic files
 app.use(express.static('./assets'))
+
+//make the upload path available for browser
+app.use('/uploads' , express.static(__dirname + '/uploads'));
+
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 

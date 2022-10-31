@@ -11,6 +11,7 @@ module.exports.home=  async function(req, res){
     try{
             
      let posts = await Post.find({})
+     .sort('-createdAt') // to keep post in ascending order
      .populate('user')
      .populate({
         path : 'comments', //multiple popolate we can do

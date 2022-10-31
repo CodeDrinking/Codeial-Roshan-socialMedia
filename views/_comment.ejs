@@ -1,24 +1,25 @@
-
-<li>
-<article class="row">
+<li id="comment-<%= comment._id %>">
+  <article class="row">
     <div>
-      <div >
+      <div>
         <div class="comment-body">
-          <header >
-            <div class="comment-user"><i class="fa fa-user"></i> <%= comment.user.name %></div>
+          <header>
+            <div class="comment-user"><i class="fa fa-user"></i>
+              <%= comment.user.name %>
+            </div>
             <!-- <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <%= comment.user.updatedAt%></time> -->
           </header>
           <div class="comment-post">
             <p>
-                <%= comment.content %>
-                <% if(locals.user && locals.user.id == comment.user.id ) {%>
-                <small>
-                    <a href="/comments/destroy/<%= comment.id %>">Delete Comment</a>
-                </small>
-                <% } %>
+              <%= comment.content %>
+                <% if(locals.user && locals.user.id==comment.user.id ) {%>
+                  <small>
+                    <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">Delete Comment</a>
+                  </small>
+                  <% } %>
             </p>
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
   </article>
 </li>
