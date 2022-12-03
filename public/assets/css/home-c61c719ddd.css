@@ -1,0 +1,49 @@
+/* body #user-img{
+    display: inline;
+  } */
+  body .submit{
+    background-color: green;
+    color: white;
+  }
+  body .user-post{
+    border-style: outset;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  body .comment-body{
+    width: 40%;
+    height: 100px;
+    padding: 10px;
+    background-color: #d0e2bc;
+    font: 1.4em/1.6em ;
+    color: #095484;
+  }
+  body .comment-content{
+    display: block;
+    border-style: ridge;
+  }
+  body .comment-user{
+    color: black;
+  }
+  body #home-container{
+    display: flex;
+
+  }
+  body #feed-posts{
+    width: 70%;
+    padding: 10px;
+
+  }
+  body #user-friends{
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid lightgray;
+    height: 100%;
+  }
+  
+  body #user-friends p{
+    font-size: medium;
+    background-color: antiquewhite;
+    margin: 2px;
+  }

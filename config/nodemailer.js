@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const ejs = require ('ejs');
 const path = require ('path');
+const env = require('./environment')
 
 
 
@@ -8,17 +9,7 @@ const path = require ('path');
 //object which is attached to nodemailer
 
 //trranporter is who sends email
-let transporter  = nodemailer.createTransport({
-    service : 'Gmail',
-    //they've created for us to interract with
-    host  : 'smtp.gmail.com',  // TLS uses smtp
-    port : 587 , //TLS most secure layer
-    secure : false ,
-    auth : {
-        user :  'mestri.roshan2526@gmail.com',
-        pass : 'Roshan@1102'
-    }
-});
+let transporter  = nodemailer.createTransport(env.smtp);
 
 
 //rendertemplte is for rendering a views file which is mailers.ejs

@@ -1,6 +1,9 @@
 const express = require('express');
+const logger = require('morgan')
+const env= require('./config/environment')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const app = express();
+const app = express(); 
 const port= 8000;
 const expressLayouts= require('express-ejs-layouts');
 const db= require('./config/mongoose')
@@ -14,17 +17,29 @@ const passportGoogle = require('./config/passport-google-oauth2-Stategy')
 const MongoStore = require('connect-mongo')(session);
 // const sassMiddleware = require('node-sass-middleware')
 const flash = require('connect-flash');
-const customMware = require('./config/middleware')
+const customMware = require('./config/middleware');
+
+
+//setting unp chat server
+const chatServer = require('http').Server(app);
+const chatsockets = require ('./config/chat_socket').chatsockets(chatServer);
+chatServer.listen(5000);
+
+console.log/("chat server is listening on port 5000")
+// const path = require('path')
 
 // app.use(sassMiddleware({
-//     src: './assets/css'
-//     , dest: './assets/css'
+//     src: path.join(__dirname , env.asset_path , 'css'),
+//     dest : path.join(__dirname ,env.asset_path , 'scss')
 //     , debug: true
 //     , outputStyle: 'extended'
 //     , prefix:  '/css'  
 
 // }));
 
+if(env.name=='development'){
+}
+app.use(cors());
 app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(expressLayouts);
@@ -35,12 +50,14 @@ app.use(expressLayouts);
 app.set('layout extractStyles' ,true)
 app.set('layout extractScripts' ,true)
 //set up of sttaic files
-app.use(express.static('./assets'))
+app.use(express.static(env.asset_path))
 
 //make the upload path available for browser
 app.use('/uploads' , express.static(__dirname + '/uploads'));
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
+app.use(logger(env.morgan.mode , env.morgan.options));
 
 
 
@@ -50,7 +67,7 @@ app.set('views' , './views')
 
 app.use(session ({
     name: 'codeial',
-    secret : 'blahSomething',
+    secret : env.session_cookie_key,
     saveUninitialized : false,
     resave : false,
     cookie : {
