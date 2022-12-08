@@ -21,9 +21,9 @@ const customMware = require('./config/middleware');
 
 
 //setting unp chat server
-const chatServer = require('http').Server(app);
-const chatsockets = require ('./config/chat_socket').chatsockets(chatServer);
-chatServer.listen(5000);
+// const chatServer = require('http').Server(app);
+// const chatsockets = require ('./config/chat_socket').chatsockets(chatServer);
+// chatServer.listen(5000);
 
 console.log/("chat server is listening on port 5000")
 // const path = require('path')
