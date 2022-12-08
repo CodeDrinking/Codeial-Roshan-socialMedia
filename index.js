@@ -40,7 +40,7 @@ console.log/("chat server is listening on port 5000")
 if(env.name=='development'){
 }
 app.use(cors());
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(expressLayouts);
 
